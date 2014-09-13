@@ -1,5 +1,12 @@
 
 import math
+import itertools
+"""
+test=[2,4,6]
+i=itertools.combinations_with_replacement(test,2)
+for e in i:
+	print e
+"""
 
 def primeCheck(x):
 	top=int(math.sqrt(x))+1
