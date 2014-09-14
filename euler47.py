@@ -31,10 +31,10 @@ def facsMakesNum(x,numsFacs):
 	numsFacs+=numsFacs #add to itself, a duff way to make two of 'em possible in combinations
 	print "facsMakeNum function ", x, numsFacs
 	results=[]
-	for l in range(3,len(numsFacs)): #to get every possible combination of len 4 and up
+	for l in range(4,len(numsFacs)): #to get every possible combination of len 4 and up
 		i=itertools.combinations_with_replacement(numsFacs,l)
 		for r in i:
-			if len(set(r))==3: #test with 3, must be 4 for final answer
+			if len(set(r))==4: #test with 3, must be 4 for final answer
 				mul=reduce(operator.mul, r, 1) #this multiplies the list so can see if is x
 				print "r is ",r, "for ", mul
 				results.append(mul)
@@ -44,16 +44,16 @@ def facsMakesNum(x,numsFacs):
 		return False
 	
 	
-nums=[641,642,643] #this will be the 4 consequitive numbers
-
-for x in range(0,10): #need to replace this with a while loop
+nums=[1,2,3,4] #this will be the 4 consequitive numbers
+answered=False
+while not answered:
 	print "nums", nums
-	numsFacs=[factors(nums[0]),factors(nums[1]),factors(nums[2])]# get all the prime factors
-	if (len(numsFacs[0])>=3 and len(numsFacs[1])>=3 and len(numsFacs[2])>=3): #will need 4 for proper
+	numsFacs=[factors(nums[0]),factors(nums[1]),factors(nums[2]),factors(nums[3])]# get all the prime factors
+	if (len(numsFacs[0])>=4 and len(numsFacs[1])>=4 and len(numsFacs[2])>=4 and len(numsFacs[2])>=4): #will need 4 for proper
 		print nums, "worth checking"
 		#will have the answer when these all return true
-		if (facsMakesNum(nums[0],numsFacs[0]) and facsMakesNum(nums[1],numsFacs[1]) and facsMakesNum(nums[2],numsFacs[2])):
+		if (facsMakesNum(nums[0],numsFacs[0]) and facsMakesNum(nums[1],numsFacs[1]) and facsMakesNum(nums[2],numsFacs[2]) and facsMakesNum(nums[3],numsFacs[3])):
 			print "WINNER is %d!!! - "%nums[0],nums
-			break
+			answered=True
 		
-	nums=[nums[0]+1,nums[1]+1,nums[2]+1]#if wasn't a win then up the numbers in the list
+	nums=[nums[0]+1,nums[1]+1,nums[2]+1,nums[3]+1]#if wasn't a win then up the numbers in the list
