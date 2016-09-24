@@ -14,3 +14,36 @@ Which starting number, under one million, produces the longest chain?
 
 NOTE: Once the chain starts the terms are allowed to go above one million.
 """
+import sys
+sys.setrecursionlimit(10000)
+
+def make_chain(i):
+    if i[-1]==1:
+        return i
+    else:
+        if i[-1]%2==0:
+            i.append(i[-1]/2)
+            return make_chain(i)
+        else:
+            i.append(i[-1]*3+1)
+            return make_chain(i)
+    
+
+chain = {}
+
+
+#chain[13] = make_chain([13])
+
+for x in range(1,1000000):
+    chain[x] = make_chain([x])
+
+longest = 0
+answer = 0
+
+for k in chain:
+    this_length = len(chain[k])
+    if this_length > longest:
+        longest = this_length
+        answer = k
+        
+print answer
